@@ -1,0 +1,10 @@
+$theme-colors: (
+  "primary": #939597,
+  "secondary": #f5df4d,
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+.App {
+  text-align: center;
+}
