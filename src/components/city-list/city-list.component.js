@@ -2,6 +2,8 @@ import React from "react";
 
 import { ListGroup } from "react-bootstrap";
 
+import "./city-list.style.scss";
+
 const CityList = ({ cities, addFavoriteCity, clearCityList }) => {
   const saveCity = (city) => {
     addFavoriteCity(city);

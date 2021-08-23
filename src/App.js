@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import Header from "./components/header/header.component";
 import Search from "./components/search/search.component";
+import FavoriteList from "./components/favorite-list/favorite-list.component";
 
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Alert } from "react-bootstrap";
 
 import "./App.scss";
 
@@ -43,6 +44,15 @@ function App() {
       <Row>
         <Col xs={{ span: 8, offset: 2 }}>
           <Search addFavoriteCity={addFavoriteCity} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {favoriteCities.length ? (
+            <FavoriteList favoriteCities={favoriteCities} />
+          ) : (
+            <Alert variant="danger">Favorite city list is empty!</Alert>
+          )}
         </Col>
       </Row>
     </Container>
