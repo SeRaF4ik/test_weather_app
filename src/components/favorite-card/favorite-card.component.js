@@ -9,7 +9,9 @@ import {
 } from "react-bootstrap";
 import { Trash, ArrowRepeat, CalendarWeek } from "react-bootstrap-icons";
 
-const FavoriteCard = ({ city }) => {
+import "./favorite-card.style.scss";
+
+const FavoriteCard = ({ city, deleteFavorite }) => {
   const [weather, setWeather] = useState(null);
   const [updateTrigger, setUpdateTrigger] = useState(false);
 
@@ -53,7 +55,7 @@ const FavoriteCard = ({ city }) => {
           >
             <ArrowRepeat />
           </Button>
-          <Button variant="secondary">
+          <Button variant="secondary" onClick={() => deleteFavorite(city)}>
             <Trash />
           </Button>
         </ButtonGroup>

@@ -4,22 +4,38 @@ import Header from "./components/header/header.component";
 import Search from "./components/search/search.component";
 import FavoriteList from "./components/favorite-list/favorite-list.component";
 
-import { Col, Container, Row, Alert } from "react-bootstrap";
+import { Col, Container, Row, Alert, Modal } from "react-bootstrap";
 
 import "./App.scss";
 
 function App() {
   const [favoriteCities, setFavoriteCities] = useState([]);
+  const [modal, setModal] = useState({
+    show: false,
+    title: "",
+    text: "",
+  });
 
   const addFavoriteCity = (cityData) => {
     const checkCity = favoriteCities.filter(
       (city) => city.name === cityData.name && city.lat === cityData.lat
     );
     if (checkCity.length) {
-      alert("City already in favorite list!");
+      setModal({
+        show: true,
+        title: "Error!",
+        text: "City already in favorite list!",
+      });
     } else {
       saveFavoriteCity([...favoriteCities, cityData]);
     }
+  };
+
+  const deleteFavorite = (cityData) => {
+    const newFavorites = favoriteCities.filter(
+      (city) => city.name !== cityData.name && city.lat !== cityData.lat
+    );
+    saveFavoriteCity(newFavorites);
   };
 
   const saveFavoriteCity = (cityArray) => {
@@ -49,12 +65,29 @@ function App() {
       <Row>
         <Col>
           {favoriteCities.length ? (
-            <FavoriteList favoriteCities={favoriteCities} />
+            <FavoriteList
+              favoriteCities={favoriteCities}
+              deleteFavorite={deleteFavorite}
+            />
           ) : (
             <Alert variant="danger">Favorite city list is empty!</Alert>
           )}
         </Col>
       </Row>
+      <Modal
+        show={modal.show}
+        onHide={() => setModal({ show: false, title: "", text: "" })}
+      >
+        <Alert
+          variant="danger"
+          onClose={() => setModal({ show: false, title: "", text: "" })}
+          dismissible
+          className="modal_alert"
+        >
+          <Alert.Heading>{modal.title}</Alert.Heading>
+          <p>{modal.text}</p>
+        </Alert>
+      </Modal>
     </Container>
   );
 }
