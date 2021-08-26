@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Switch, Route } from "react-router";
+
+import HomePage from "./pages/home/homepage.component";
+import Forecast from "./pages/forecast/forecast.component";
 
 import Header from "./components/header/header.component";
-import Search from "./components/search/search.component";
-import FavoriteList from "./components/favorite-list/favorite-list.component";
-import ModalError from "./components/modal-error/modal-error.component";
 
 import FavoriteContext from "./context/favorite/favorite.context";
 import ModalContext from "./context/modal/modal.context";
 
-import { Col, Container, Row, Alert } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import "./App.scss";
 
@@ -56,32 +57,17 @@ function App() {
 
   return (
     <Container className="App" fluid>
-      <Row>
-        <Col>
-          <Header />
-        </Col>
-      </Row>
+      <Header />
       <FavoriteContext.Provider
         value={{ favoriteCities, addFavoriteCity, deleteFavorite }}
       >
-        <Row>
-          <Col xs={{ span: 8, offset: 2 }}>
-            <Search />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {favoriteCities.length ? (
-              <FavoriteList />
-            ) : (
-              <Alert variant="danger">Favorite city list is empty!</Alert>
-            )}
-          </Col>
-        </Row>
+        <ModalContext.Provider value={{ modal, setModal }}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/forecast/:city/:lat/:lon" component={Forecast} />
+          </Switch>
+        </ModalContext.Provider>
       </FavoriteContext.Provider>
-      <ModalContext.Provider value={{ modal, setModal }}>
-        <ModalError />
-      </ModalContext.Provider>
     </Container>
   );
 }

@@ -4,13 +4,13 @@ import FavoriteCard from "../favorite-card/favorite-card.component";
 
 import FavoriteContext from "../../context/favorite/favorite.context";
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Alert } from "react-bootstrap";
 
 import "./favorite-list.style.scss";
 
 const FavoriteList = () => {
   const { favoriteCities } = useContext(FavoriteContext);
-  return (
+  return favoriteCities.length ? (
     <Row className="justify-content-center favorite_list">
       <h4>Favorite List</h4>
       {favoriteCities.map((city, key) => (
@@ -19,6 +19,8 @@ const FavoriteList = () => {
         </Col>
       ))}
     </Row>
+  ) : (
+    <Alert variant="danger">Favorite city list is empty!</Alert>
   );
 };
 

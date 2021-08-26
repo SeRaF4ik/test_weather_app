@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { withRouter } from "react-router";
 
 import FavoriteContext from "../../context/favorite/favorite.context";
 
@@ -13,7 +14,7 @@ import { Trash, ArrowRepeat, CalendarWeek } from "react-bootstrap-icons";
 
 import "./favorite-card.style.scss";
 
-const FavoriteCard = ({ city }) => {
+const FavoriteCard = ({ city, history }) => {
   const [weather, setWeather] = useState(null);
   const [updateTrigger, setUpdateTrigger] = useState(false);
   const { deleteFavorite } = useContext(FavoriteContext);
@@ -49,7 +50,14 @@ const FavoriteCard = ({ city }) => {
       </ListGroup>
       <Card.Footer>
         <ButtonGroup>
-          <Button href="#" variant="secondary">
+          <Button
+            variant="secondary"
+            onClick={() =>
+              history.push(
+                `/forecast/${weather.name}/${weather.coord.lat}/${weather.coord.lon}`
+              )
+            }
+          >
             <CalendarWeek />
           </Button>
           <Button
@@ -67,4 +75,4 @@ const FavoriteCard = ({ city }) => {
   ) : null;
 };
 
-export default FavoriteCard;
+export default withRouter(FavoriteCard);
