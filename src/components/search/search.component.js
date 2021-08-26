@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { FormControl } from "react-bootstrap";
-
 import CityList from "../city-list/city-list.component";
+
+import { FormControl } from "react-bootstrap";
 
 import "./search.style.scss";
 
-const Search = ({ addFavoriteCity }) => {
+const Search = () => {
   const [cityList, setCityList] = useState([]);
 
   const handleCity = (event) => {
@@ -34,11 +34,7 @@ const Search = ({ addFavoriteCity }) => {
         placeholder="Enter 3 and more letters"
       />
       {cityList.length ? (
-        <CityList
-          addFavoriteCity={addFavoriteCity}
-          cities={cityList}
-          clearCityList={setCityList}
-        />
+        <CityList cities={cityList} clearCityList={setCityList} />
       ) : null}
     </div>
   );

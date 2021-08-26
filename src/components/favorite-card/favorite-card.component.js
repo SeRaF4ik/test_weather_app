@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import FavoriteContext from "../../context/favorite/favorite.context";
 
 import {
   Card,
@@ -11,9 +13,10 @@ import { Trash, ArrowRepeat, CalendarWeek } from "react-bootstrap-icons";
 
 import "./favorite-card.style.scss";
 
-const FavoriteCard = ({ city, deleteFavorite }) => {
+const FavoriteCard = ({ city }) => {
   const [weather, setWeather] = useState(null);
   const [updateTrigger, setUpdateTrigger] = useState(false);
+  const { deleteFavorite } = useContext(FavoriteContext);
 
   useEffect(() => {
     const fetchWeather = () => {

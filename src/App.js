@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/header/header.component";
 import Search from "./components/search/search.component";
 import FavoriteList from "./components/favorite-list/favorite-list.component";
+import ModalError from "./components/modal-error/modal-error.component";
 
-import { Col, Container, Row, Alert, Modal } from "react-bootstrap";
+import FavoriteContext from "./context/favorite/favorite.context";
+import ModalContext from "./context/modal/modal.context";
+
+import { Col, Container, Row, Alert } from "react-bootstrap";
 
 import "./App.scss";
 
@@ -57,37 +61,27 @@ function App() {
           <Header />
         </Col>
       </Row>
-      <Row>
-        <Col xs={{ span: 8, offset: 2 }}>
-          <Search addFavoriteCity={addFavoriteCity} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {favoriteCities.length ? (
-            <FavoriteList
-              favoriteCities={favoriteCities}
-              deleteFavorite={deleteFavorite}
-            />
-          ) : (
-            <Alert variant="danger">Favorite city list is empty!</Alert>
-          )}
-        </Col>
-      </Row>
-      <Modal
-        show={modal.show}
-        onHide={() => setModal({ show: false, title: "", text: "" })}
+      <FavoriteContext.Provider
+        value={{ favoriteCities, addFavoriteCity, deleteFavorite }}
       >
-        <Alert
-          variant="danger"
-          onClose={() => setModal({ show: false, title: "", text: "" })}
-          dismissible
-          className="modal_alert"
-        >
-          <Alert.Heading>{modal.title}</Alert.Heading>
-          <p>{modal.text}</p>
-        </Alert>
-      </Modal>
+        <Row>
+          <Col xs={{ span: 8, offset: 2 }}>
+            <Search />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {favoriteCities.length ? (
+              <FavoriteList />
+            ) : (
+              <Alert variant="danger">Favorite city list is empty!</Alert>
+            )}
+          </Col>
+        </Row>
+      </FavoriteContext.Provider>
+      <ModalContext.Provider value={{ modal, setModal }}>
+        <ModalError />
+      </ModalContext.Provider>
     </Container>
   );
 }

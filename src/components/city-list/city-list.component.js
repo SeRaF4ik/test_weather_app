@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import FavoriteContext from "../../context/favorite/favorite.context";
 
 import { ListGroup } from "react-bootstrap";
 
 import "./city-list.style.scss";
 
-const CityList = ({ cities, addFavoriteCity, clearCityList }) => {
+const CityList = ({ cities, clearCityList }) => {
+  const { addFavoriteCity } = useContext(FavoriteContext);
   const saveCity = (city) => {
     addFavoriteCity(city);
     clearCityList([]);
