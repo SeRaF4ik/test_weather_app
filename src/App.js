@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router";
 
 import HomePage from "./pages/home/homepage.component";
-import Forecast from "./pages/forecast/forecast.component";
+import ForecastPage from "./pages/forecast/forecast.component";
 
 import Header from "./components/header/header.component";
 
@@ -64,7 +64,7 @@ function App() {
         <ModalContext.Provider value={{ modal, setModal }}>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/forecast/:city/:lat/:lon" component={Forecast} />
+            <Route path="/forecast/:city/:lat/:lon" component={ForecastPage} />
           </Switch>
         </ModalContext.Provider>
       </FavoriteContext.Provider>
