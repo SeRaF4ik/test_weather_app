@@ -1,3 +1,11 @@
 .favorite_card {
   margin-bottom: 10px;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  .card-header {
+    background-color: #939597;
+    color: #fff;
+  }
+  .card-footer {
+    background-color: #939597;
+  }
 }

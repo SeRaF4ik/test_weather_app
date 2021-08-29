@@ -3,3 +3,14 @@
     margin-bottom: 0;
   }
 }
+@media screen and (max-width: 374px) {
+  .modal-open {
+    padding-right: 0px !important;
+    .modal {
+      max-width: 320px;
+      .modal-dialog {
+        max-width: 290px;
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ const FavoriteList = () => {
     <Row className="justify-content-center favorite_list">
       <h4>Favorite List</h4>
       {favoriteCities.map((city, key) => (
-        <Col key={key} xs={3}>
+        <Col key={key} xs={10} sm={6} md={4} lg={3}>
           <FavoriteCard city={city} />
         </Col>
       ))}

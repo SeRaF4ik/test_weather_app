@@ -9,7 +9,7 @@ import { Row, Col } from "react-bootstrap";
 const HomePage = () => (
   <>
     <Row>
-      <Col xs={{ span: 8, offset: 2 }}>
+      <Col xs={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }}>
         <Search />
       </Col>
     </Row>

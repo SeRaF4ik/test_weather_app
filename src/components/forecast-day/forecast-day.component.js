@@ -23,7 +23,7 @@ const ForecastDay = ({ day }) => {
           alt=""
         />
         {day.weather[0].description}
-        <Table bordered size="sm">
+        <Table bordered size="sm" responsive>
           <thead>
             <tr>
               <th></th>

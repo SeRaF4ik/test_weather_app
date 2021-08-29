@@ -14,4 +14,21 @@
   a {
     text-decoration: none;
   }
+  @media screen and (max-width: 374px) {
+    .navbar-brand {
+      font-size: 12px;
+    }
+    .about {
+      font-size: 12px;
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 411px) {
+  #popover-basic {
+    max-width: 190px;
+  }
 }

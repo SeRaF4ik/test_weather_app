@@ -18,7 +18,7 @@ const Header = () => (
   <Row>
     <Col>
       <Navbar className="header" bg="primary" variant="dark">
-        <Container>
+        <Container fluid>
           <Link to="/">
             <Navbar.Brand>
               <img
@@ -31,7 +31,6 @@ const Header = () => (
               Test Weather App
             </Navbar.Brand>
           </Link>
-          <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <OverlayTrigger
               trigger="click"

@@ -7,7 +7,7 @@ import { Row, Col } from "react-bootstrap";
 const ForecastPage = () => {
   return (
     <Row>
-      <Col xs={{ span: 8, offset: 2 }}>
+      <Col xs={12} md={{ span: 10, offset: 1 }} xxl={{ span: 8, offset: 2 }}>
         <Forecast />
       </Col>
     </Row>
