@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import CityList from "../city-list/city-list.component";
 
@@ -7,19 +7,22 @@ import { FormControl } from "react-bootstrap";
 import "./search.style.scss";
 
 const Search = () => {
+  const [cities, setCities] = useState([]);
   const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    fetch("cities.json")
+      .then((cities) => cities.json())
+      .then((json) => setCities(json));
+  }, []);
 
   const handleCity = (event) => {
     const enteredCity = event.target.value;
     if (enteredCity !== null && enteredCity.length >= 3) {
-      fetch("cities.json")
-        .then((cities) => cities.json())
-        .then((cities) =>
-          cities.filter((city) =>
-            city.name.toLowerCase().includes(enteredCity.toLowerCase())
-          )
-        )
-        .then((cityList) => setCityList(cityList));
+      const filterCities = cities.filter((city) =>
+        city.name.toLowerCase().includes(enteredCity.toLowerCase())
+      );
+      setCityList(filterCities);
     } else {
       if (cityList.length) setCityList([]);
     }

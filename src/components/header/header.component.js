@@ -28,7 +28,7 @@ const Header = () => (
                 className="d-inline-block align-top logo"
                 alt="logo"
               />
-              Test Weather App
+              Weather App
             </Navbar.Brand>
           </Link>
           <Navbar.Collapse className="justify-content-end">
@@ -40,8 +40,9 @@ const Header = () => (
                   <Popover.Header as="h3">About App</Popover.Header>
                   <Popover.Body>
                     This is a test app based on <strong>OpenWeather API</strong>
-                    . You can type the city name and see the weater forecast on
-                    this day.
+                    . You can type the city name and see today's forecast or
+                    click the calendar button to see 8-day weather forecast for
+                    chosen city.
                   </Popover.Body>
                 </Popover>
               }
