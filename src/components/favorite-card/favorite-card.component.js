@@ -22,7 +22,7 @@ const FavoriteCard = ({ city, history }) => {
   useEffect(() => {
     const fetchWeather = () => {
       fetch(
-        `https://seraf4ik.com.ua/weather/send.php?type=get_weather&city=${city.name}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&units=metric&appid=e84bb2e916ce72d4f288bd3fe0526b6a`
       )
         .then((weather) => weather.json())
         .then((json) => setWeather(json));

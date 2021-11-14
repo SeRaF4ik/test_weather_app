@@ -15,7 +15,7 @@ const Forecast = ({ match }) => {
   useEffect(() => {
     const fetchForecast = () => {
       fetch(
-        `https://seraf4ik.com.ua/weather/send.php?type=get_forecast&lat=${lat}&lon=${lon}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e84bb2e916ce72d4f288bd3fe0526b6a`
       )
         .then((weather) => weather.json())
         .then((json) => {
