@@ -1,0 +1,25 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!master'
+      - '!gh-pages'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: |
+        yarn install
+        yarn build
+      env:
+        REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
