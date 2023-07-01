@@ -11,6 +11,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { Trash, ArrowRepeat, CalendarWeek } from "react-bootstrap-icons";
+import { WEATHER_API_KEY } from "../../utils/constants/api.constants";
 
 import "./favorite-card.style.scss";
 
@@ -22,7 +23,7 @@ const FavoriteCard = ({ city, history }) => {
   useEffect(() => {
     const fetchWeather = () => {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&units=metric&appid=e84bb2e916ce72d4f288bd3fe0526b6a`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&units=metric&appid=${WEATHER_API_KEY}`
       )
         .then((weather) => weather.json())
         .then((json) => setWeather(json));

@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import ForecastDay from "../forecast-day/forecast-day.component";
 
 import { Spinner, Accordion } from "react-bootstrap";
+import { WEATHER_API_KEY } from "../../utils/constants/api.constants";
 
 import "./forecast.style.scss";
 
@@ -15,7 +16,7 @@ const Forecast = ({ match }) => {
   useEffect(() => {
     const fetchForecast = () => {
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e84bb2e916ce72d4f288bd3fe0526b6a`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`
       )
         .then((weather) => weather.json())
         .then((json) => {
