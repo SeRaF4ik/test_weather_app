@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 
-import { ListGroup, ListGroupItem, Accordion, Table } from "react-bootstrap";
+import { ListGroup, ListGroupItem, Accordion, Table } from 'react-bootstrap'
 
-import "./forecast-day.style.scss";
+import './forecast-day.style.scss'
 
 const ForecastDay = ({ day }) => {
   const prepareDate = (timestamp) =>
-    new Date(timestamp * 1000).toLocaleString("en", {
-      month: "long",
-      weekday: "long",
-      day: "numeric",
-    });
+    new Date(timestamp * 1000).toLocaleString('en', {
+      month: 'long',
+      weekday: 'long',
+      day: 'numeric'
+    })
 
   return (
     <Accordion.Item eventKey={day.dt}>
@@ -62,7 +62,7 @@ const ForecastDay = ({ day }) => {
         </ListGroup>
       </Accordion.Body>
     </Accordion.Item>
-  );
-};
+  )
+}
 
-export default ForecastDay;
+export default ForecastDay

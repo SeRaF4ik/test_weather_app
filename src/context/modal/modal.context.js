@@ -1,12 +1,12 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
 const ModalContext = createContext({
   modal: {
     show: false,
-    title: "",
-    text: "",
+    title: '',
+    text: ''
   },
-  setModal: () => {},
-});
+  setModal: () => {}
+})
 
-export default ModalContext;
+export default ModalContext

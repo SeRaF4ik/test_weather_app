@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
 
-import ForecastDay from "../forecast-day/forecast-day.component";
+import ForecastDay from '../forecast-day/forecast-day.component'
 
-import { Spinner, Accordion } from "react-bootstrap";
-import { WEATHER_API_KEY } from "../../utils/constants/api.constants";
+import { Spinner, Accordion } from 'react-bootstrap'
+import { WEATHER_API_KEY } from '../../utils/constants/api.constants'
 
-import "./forecast.style.scss";
+import './forecast.style.scss'
 
-const Forecast = ({ match }) => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const { city, lat, lon } = match.params;
+const Forecast = () => {
+  const [weatherData, setWeatherData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const { city = '', lat = '', lon = '' } = useParams()
 
   useEffect(() => {
     const fetchForecast = () => {
@@ -20,13 +20,13 @@ const Forecast = ({ match }) => {
       )
         .then((weather) => weather.json())
         .then((json) => {
-          setWeatherData(json);
-          setIsLoading(false);
-        });
-    };
+          setWeatherData(json)
+          setIsLoading(false)
+        })
+    }
 
-    fetchForecast();
-  }, [lat, lon]);
+    fetchForecast()
+  }, [lat, lon])
 
   return !isLoading ? (
     <div className="forecast">
@@ -44,7 +44,7 @@ const Forecast = ({ match }) => {
       <Spinner animation="border" variant="primary" />
       <Spinner animation="border" variant="secondary" />
     </div>
-  );
-};
+  )
+}
 
-export default withRouter(Forecast);
+export default Forecast

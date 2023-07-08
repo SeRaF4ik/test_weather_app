@@ -1,24 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import { withRouter } from "react-router";
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import FavoriteContext from "../../context/favorite/favorite.context";
+import FavoriteContext from '../../context/favorite/favorite.context'
 
 import {
   Card,
   ListGroup,
   ListGroupItem,
   ButtonGroup,
-  Button,
-} from "react-bootstrap";
-import { Trash, ArrowRepeat, CalendarWeek } from "react-bootstrap-icons";
-import { WEATHER_API_KEY } from "../../utils/constants/api.constants";
+  Button
+} from 'react-bootstrap'
+import { Trash, ArrowRepeat, CalendarWeek } from 'react-bootstrap-icons'
+import { WEATHER_API_KEY } from '../../utils/constants/api.constants'
 
-import "./favorite-card.style.scss";
+import './favorite-card.style.scss'
 
-const FavoriteCard = ({ city, history }) => {
-  const [weather, setWeather] = useState(null);
-  const [updateTrigger, setUpdateTrigger] = useState(false);
-  const { deleteFavorite } = useContext(FavoriteContext);
+const FavoriteCard = ({ city }) => {
+  const navigate = useNavigate()
+  const [weather, setWeather] = useState(null)
+  const [updateTrigger, setUpdateTrigger] = useState(false)
+  const { deleteFavorite } = useContext(FavoriteContext)
 
   useEffect(() => {
     const fetchWeather = () => {
@@ -26,11 +27,11 @@ const FavoriteCard = ({ city, history }) => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&units=metric&appid=${WEATHER_API_KEY}`
       )
         .then((weather) => weather.json())
-        .then((json) => setWeather(json));
-    };
+        .then((json) => setWeather(json))
+    }
 
-    fetchWeather();
-  }, [city.name, updateTrigger]);
+    fetchWeather()
+  }, [city.name, updateTrigger])
 
   return weather ? (
     <Card className="favorite_card" border="secondary">
@@ -54,7 +55,7 @@ const FavoriteCard = ({ city, history }) => {
           <Button
             variant="secondary"
             onClick={() =>
-              history.push(
+              navigate(
                 `/forecast/${weather.name}/${weather.coord.lat}/${weather.coord.lon}`
               )
             }
@@ -73,7 +74,7 @@ const FavoriteCard = ({ city, history }) => {
         </ButtonGroup>
       </Card.Footer>
     </Card>
-  ) : null;
-};
+  ) : null
+}
 
-export default withRouter(FavoriteCard);
+export default FavoriteCard

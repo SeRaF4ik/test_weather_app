@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 
-import FavoriteContext from "../../context/favorite/favorite.context";
+import FavoriteContext from '../../context/favorite/favorite.context'
 
-import { ListGroup } from "react-bootstrap";
+import { ListGroup } from 'react-bootstrap'
 
-import "./city-list.style.scss";
+import './city-list.style.scss'
 
 const CityList = ({ cities, clearCityList }) => {
-  const { addFavoriteCity } = useContext(FavoriteContext);
+  const { addFavoriteCity } = useContext(FavoriteContext)
   const saveCity = (city) => {
-    addFavoriteCity(city);
-    clearCityList([]);
-  };
+    addFavoriteCity(city)
+    clearCityList([])
+  }
 
   return (
     <ListGroup className="city_list">
@@ -30,7 +30,7 @@ const CityList = ({ cities, clearCityList }) => {
         </ListGroup.Item>
       ))}
     </ListGroup>
-  );
-};
+  )
+}
 
-export default CityList;
+export default CityList

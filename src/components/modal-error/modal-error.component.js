@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 
-import ModalContext from "../../context/modal/modal.context";
+import ModalContext from '../../context/modal/modal.context'
 
-import { Modal, Alert } from "react-bootstrap";
+import { Modal, Alert } from 'react-bootstrap'
 
-import "./modal-error.style.scss";
+import './modal-error.style.scss'
 
 const ModalError = () => {
-  const { modal, setModal } = useContext(ModalContext);
+  const { modal, setModal } = useContext(ModalContext)
 
   return (
     <Modal
       show={modal.show}
-      onHide={() => setModal({ show: false, title: "", text: "" })}
+      onHide={() => setModal({ show: false, title: '', text: '' })}
     >
       <Alert
         variant="danger"
-        onClose={() => setModal({ show: false, title: "", text: "" })}
+        onClose={() => setModal({ show: false, title: '', text: '' })}
         dismissible
         className="modal_alert"
       >
@@ -24,7 +24,7 @@ const ModalError = () => {
         <p>{modal.text}</p>
       </Alert>
     </Modal>
-  );
-};
+  )
+}
 
-export default ModalError;
+export default ModalError

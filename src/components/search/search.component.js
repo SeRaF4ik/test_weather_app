@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-import CityList from "../city-list/city-list.component";
+import { PUBLIC_URL } from '~/utils/constants/app.constants'
 
-import { FormControl } from "react-bootstrap";
+import CityList from '../city-list/city-list.component'
 
-import "./search.style.scss";
+import { FormControl } from 'react-bootstrap'
+
+import './search.style.scss'
 
 const Search = () => {
-  const [cities, setCities] = useState([]);
-  const [cityList, setCityList] = useState([]);
+  const [cities, setCities] = useState([])
+  const [cityList, setCityList] = useState([])
 
   useEffect(() => {
-    fetch("cities.json")
+    fetch(`${PUBLIC_URL}/cities.json`)
       .then((cities) => cities.json())
-      .then((json) => setCities(json));
-  }, []);
+      .then((json) => setCities(json))
+  }, [])
 
   const handleCity = (event) => {
-    const enteredCity = event.target.value;
+    const enteredCity = event.target.value
     if (enteredCity !== null && enteredCity.length >= 3) {
       const filterCities = cities.filter((city) =>
         city.name.toLowerCase().includes(enteredCity.toLowerCase())
-      );
-      setCityList(filterCities);
+      )
+      setCityList(filterCities)
     } else {
-      if (cityList.length) setCityList([]);
+      if (cityList.length) setCityList([])
     }
-  };
+  }
 
   return (
     <div className="search_block">
@@ -40,7 +42,7 @@ const Search = () => {
         <CityList cities={cityList} clearCityList={setCityList} />
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

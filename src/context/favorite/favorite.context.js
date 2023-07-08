@@ -1,9 +1,9 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
 const FavoriteContext = createContext({
   favoriteCities: [],
   addFavoriteCity: () => {},
-  deleteFavorite: () => {},
-});
+  deleteFavorite: () => {}
+})
 
-export default FavoriteContext;
+export default FavoriteContext
