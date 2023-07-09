@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-import { ListGroup, ListGroupItem, Accordion, Table } from 'react-bootstrap'
+import { Accordion, ListGroup, ListGroupItem, Table } from 'react-bootstrap'
+
+import { DailyForecast } from '~/types/app.models'
 
 import './forecast-day.style.scss'
 
-const ForecastDay = ({ day }) => {
-  const prepareDate = (timestamp) =>
+interface ForecastDayProps {
+  day: DailyForecast
+}
+
+const ForecastDay: FC<ForecastDayProps> = ({ day }) => {
+  const prepareDate = (timestamp: number) =>
     new Date(timestamp * 1000).toLocaleString('en', {
       month: 'long',
       weekday: 'long',
@@ -13,7 +19,7 @@ const ForecastDay = ({ day }) => {
     })
 
   return (
-    <Accordion.Item eventKey={day.dt}>
+    <Accordion.Item eventKey={String(day.dt)}>
       <Accordion.Header>
         <span>{prepareDate(day.dt)}</span>
       </Accordion.Header>

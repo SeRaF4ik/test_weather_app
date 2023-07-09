@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import ModalContext from '../../context/modal/modal.context'
+import { Alert, Modal } from 'react-bootstrap'
 
-import { Modal, Alert } from 'react-bootstrap'
+import ModalContext from '~/context/modal/modal.context'
 
 import './modal-error.style.scss'
 

@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import HomePage from './pages/home/homepage.component'
-import ForecastPage from './pages/forecast/forecast.component'
+import { Container } from 'react-bootstrap'
 
 import Header from './components/header/header.component'
-
 import FavoriteContext from './context/favorite/favorite.context'
 import ModalContext from './context/modal/modal.context'
-
-import { Container } from 'react-bootstrap'
+import ForecastPage from './pages/forecast/forecast.component'
+import HomePage from './pages/home/homepage.component'
+import { FavoriteCityModel, ModalDataModel } from './types/app.models'
 
 import './App.scss'
 
 function App() {
-  const [favoriteCities, setFavoriteCities] = useState([])
-  const [modal, setModal] = useState({
+  const [favoriteCities, setFavoriteCities] = useState<FavoriteCityModel[]>([])
+  const [modal, setModal] = useState<ModalDataModel>({
     show: false,
     title: '',
     text: ''
   })
 
-  const addFavoriteCity = (cityData) => {
+  const addFavoriteCity = (cityData: FavoriteCityModel) => {
     const checkCity = favoriteCities.filter(
       (city) => city.name === cityData.name && city.lat === cityData.lat
     )
@@ -36,20 +35,23 @@ function App() {
     }
   }
 
-  const deleteFavorite = (cityData) => {
+  const deleteFavorite = (cityData: FavoriteCityModel) => {
     const newFavorites = favoriteCities.filter(
       (city) => city.name !== cityData.name && city.lat !== cityData.lat
     )
     saveFavoriteCity(newFavorites)
   }
 
-  const saveFavoriteCity = (cityArray) => {
+  const saveFavoriteCity = (cityArray: FavoriteCityModel[]) => {
     setFavoriteCities(cityArray)
     localStorage.setItem('favoriteCities', JSON.stringify(cityArray))
   }
 
   useEffect(() => {
-    const localFavorite = JSON.parse(localStorage.getItem('favoriteCities'))
+    const localFavorite = JSON.parse(
+      localStorage.getItem('favoriteCities') || ''
+    )
+
     if (localFavorite !== null) {
       setFavoriteCities(localFavorite)
     }
@@ -63,7 +65,7 @@ function App() {
       >
         <ModalContext.Provider value={{ modal, setModal }}>
           <Routes>
-            <Route exact path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route
               path="/forecast/:city/:lat/:lon"
               element={<ForecastPage />}

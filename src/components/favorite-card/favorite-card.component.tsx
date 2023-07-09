@@ -1,24 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import FavoriteContext from '../../context/favorite/favorite.context'
-
 import {
+  Button,
+  ButtonGroup,
   Card,
   ListGroup,
-  ListGroupItem,
-  ButtonGroup,
-  Button
+  ListGroupItem
 } from 'react-bootstrap'
-import { Trash, ArrowRepeat, CalendarWeek } from 'react-bootstrap-icons'
-import { WEATHER_API_KEY } from '../../utils/constants/api.constants'
+import { ArrowRepeat, CalendarWeek, Trash } from 'react-bootstrap-icons'
+
+import FavoriteContext from '~/context/favorite/favorite.context'
+import { FavoriteCityModel, WeatherModel } from '~/types/app.models'
+import { WEATHER_API_KEY } from '~/utils/constants/api.constants'
 
 import './favorite-card.style.scss'
 
-const FavoriteCard = ({ city }) => {
+interface FavoriteCardProps {
+  city: FavoriteCityModel
+}
+
+const FavoriteCard: FC<FavoriteCardProps> = ({ city }) => {
   const navigate = useNavigate()
-  const [weather, setWeather] = useState(null)
-  const [updateTrigger, setUpdateTrigger] = useState(false)
+  const [weather, setWeather] = useState<WeatherModel | null>(null)
+  const [updateTrigger, setUpdateTrigger] = useState<boolean>(false)
   const { deleteFavorite } = useContext(FavoriteContext)
 
   useEffect(() => {

@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
-import ForecastDay from '../forecast-day/forecast-day.component'
+import { Accordion, Spinner } from 'react-bootstrap'
 
-import { Spinner, Accordion } from 'react-bootstrap'
-import { WEATHER_API_KEY } from '../../utils/constants/api.constants'
+import { WeatherDetailsModel } from '~/types/app.models'
+import { WEATHER_API_KEY } from '~/utils/constants/api.constants'
+
+import ForecastDay from '../forecast-day/forecast-day.component'
 
 import './forecast.style.scss'
 
 const Forecast = () => {
-  const [weatherData, setWeatherData] = useState(null)
+  const [weatherData, setWeatherData] = useState<WeatherDetailsModel | null>(
+    null
+  )
   const [isLoading, setIsLoading] = useState(true)
   const { city = '', lat = '', lon = '' } = useParams()
 
@@ -28,12 +32,12 @@ const Forecast = () => {
     fetchForecast()
   }, [lat, lon])
 
-  return !isLoading ? (
+  return !isLoading && !!weatherData?.daily.length ? (
     <div className="forecast">
       <h1>{city}</h1>
       <h3>8-day forecast</h3>
-      <Accordion defaultActiveKey={weatherData.daily[0].dt}>
-        {weatherData.daily.map((day, key) => (
+      <Accordion defaultActiveKey={String(weatherData?.daily[0].dt)}>
+        {weatherData?.daily.map((day, key) => (
           <ForecastDay key={key} day={day} />
         ))}
       </Accordion>

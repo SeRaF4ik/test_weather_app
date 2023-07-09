@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Search from '../../components/search/search.component'
-import FavoriteList from '../../components/favorite-list/favorite-list.component'
-import ModalError from '../../components/modal-error/modal-error.component'
+import { Col, Row } from 'react-bootstrap'
 
-import { Row, Col } from 'react-bootstrap'
+import FavoriteList from '~/components/favorite-list/favorite-list.component'
+import ModalError from '~/components/modal-error/modal-error.component'
+import Search from '~/components/search/search.component'
 
 const HomePage = () => (
   <>

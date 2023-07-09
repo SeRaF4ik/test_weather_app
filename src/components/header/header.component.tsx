@@ -2,18 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import {
-  Navbar,
-  Container,
   Button,
-  Popover,
+  Col,
+  Container,
+  Navbar,
   OverlayTrigger,
-  Row,
-  Col
+  Popover,
+  Row
 } from 'react-bootstrap'
 import { QuestionCircle } from 'react-bootstrap-icons'
 
-import './header.style.scss'
 import { PUBLIC_URL } from '~/utils/constants/app.constants'
+
+import './header.style.scss'
 
 const Header = () => (
   <Row>

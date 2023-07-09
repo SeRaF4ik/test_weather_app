@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
 
+import { Alert, Col, Row } from 'react-bootstrap'
+
+import FavoriteContext from '~/context/favorite/favorite.context'
+
 import FavoriteCard from '../favorite-card/favorite-card.component'
-
-import FavoriteContext from '../../context/favorite/favorite.context'
-
-import { Row, Col, Alert } from 'react-bootstrap'
 
 import './favorite-list.style.scss'
 
 const FavoriteList = () => {
   const { favoriteCities } = useContext(FavoriteContext)
+
   return favoriteCities.length ? (
     <Row className="justify-content-center favorite_list">
       <h4>Favorite List</h4>

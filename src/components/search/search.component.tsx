@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
+import { FormControl } from 'react-bootstrap'
+
+import { CityModel } from '~/types/app.models'
 import { PUBLIC_URL } from '~/utils/constants/app.constants'
 
 import CityList from '../city-list/city-list.component'
 
-import { FormControl } from 'react-bootstrap'
-
 import './search.style.scss'
 
 const Search = () => {
-  const [cities, setCities] = useState([])
-  const [cityList, setCityList] = useState([])
+  const [cities, setCities] = useState<CityModel[]>([])
+  const [cityList, setCityList] = useState<CityModel[]>([])
 
   useEffect(() => {
     fetch(`${PUBLIC_URL}/cities.json`)
@@ -18,8 +19,9 @@ const Search = () => {
       .then((json) => setCities(json))
   }, [])
 
-  const handleCity = (event) => {
+  const handleCity = (event: ChangeEvent<HTMLInputElement>) => {
     const enteredCity = event.target.value
+
     if (enteredCity !== null && enteredCity.length >= 3) {
       const filterCities = cities.filter((city) =>
         city.name.toLowerCase().includes(enteredCity.toLowerCase())

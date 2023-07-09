@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Forecast from '../../components/forecast/forecast.component'
+import { Col, Row } from 'react-bootstrap'
 
-import { Row, Col } from 'react-bootstrap'
+import Forecast from '~/components/forecast/forecast.component'
 
 const ForecastPage = () => {
   return (
