@@ -1,19 +1,25 @@
-import React from "react";
+import React, { FC } from 'react'
 
-import { ListGroup, ListGroupItem, Accordion, Table } from "react-bootstrap";
+import { Accordion, ListGroup, ListGroupItem, Table } from 'react-bootstrap'
 
-import "./forecast-day.style.scss";
+import { DailyForecast } from '~/types/app.models'
 
-const ForecastDay = ({ day }) => {
-  const prepareDate = (timestamp) =>
-    new Date(timestamp * 1000).toLocaleString("en", {
-      month: "long",
-      weekday: "long",
-      day: "numeric",
-    });
+import './forecast-day.style.scss'
+
+interface ForecastDayProps {
+  day: DailyForecast
+}
+
+const ForecastDay: FC<ForecastDayProps> = ({ day }) => {
+  const prepareDate = (timestamp: number) =>
+    new Date(timestamp * 1000).toLocaleString('en', {
+      month: 'long',
+      weekday: 'long',
+      day: 'numeric'
+    })
 
   return (
-    <Accordion.Item eventKey={day.dt}>
+    <Accordion.Item eventKey={String(day.dt)}>
       <Accordion.Header>
         <span>{prepareDate(day.dt)}</span>
       </Accordion.Header>
@@ -62,7 +68,7 @@ const ForecastDay = ({ day }) => {
         </ListGroup>
       </Accordion.Body>
     </Accordion.Item>
-  );
-};
+  )
+}
 
-export default ForecastDay;
+export default ForecastDay

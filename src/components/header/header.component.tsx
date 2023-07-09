@@ -1,18 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 import {
-  Navbar,
-  Container,
   Button,
-  Popover,
-  OverlayTrigger,
-  Row,
   Col,
-} from "react-bootstrap";
-import { QuestionCircle } from "react-bootstrap-icons";
+  Container,
+  Navbar,
+  OverlayTrigger,
+  Popover,
+  Row
+} from 'react-bootstrap'
+import { QuestionCircle } from 'react-bootstrap-icons'
 
-import "./header.style.scss";
+import { PUBLIC_URL } from '~/utils/constants/app.constants'
+
+import './header.style.scss'
 
 const Header = () => (
   <Row>
@@ -22,7 +24,7 @@ const Header = () => (
           <Link to="/">
             <Navbar.Brand>
               <img
-                src="/weather_app/logo.svg"
+                src={`${PUBLIC_URL}/logo.svg`}
                 width="30"
                 height="30"
                 className="d-inline-block align-top logo"
@@ -40,9 +42,9 @@ const Header = () => (
                   <Popover.Header as="h3">About App</Popover.Header>
                   <Popover.Body>
                     This is a test app based on <strong>OpenWeather API</strong>
-                    . You can type the city name and see today's forecast or
-                    click the calendar button to see 8-day weather forecast for
-                    chosen city.
+                    . You can type the city name and see today`&apos;`s forecast
+                    or click the calendar button to see 8-day weather forecast
+                    for chosen city.
                   </Popover.Body>
                 </Popover>
               }
@@ -57,6 +59,6 @@ const Header = () => (
       </Navbar>
     </Col>
   </Row>
-);
+)
 
-export default Header;
+export default Header
