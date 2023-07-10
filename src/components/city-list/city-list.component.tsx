@@ -30,8 +30,8 @@ const CityList: FC<CityListProps> = ({ cities, clearCityList }) => {
           onClick={() => saveCity(city)}
         >
           <img
-            src={`https://openweathermap.org/images/flags/${city.country.toLowerCase()}.png`}
-            alt={city.country}
+            src={`https://openweathermap.org/images/flags/${city.countryCode.toLowerCase()}.png`}
+            alt={city.countryCode}
           />
           {city.name}
         </ListGroup.Item>
