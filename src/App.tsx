@@ -48,12 +48,14 @@ function App() {
   }
 
   useEffect(() => {
-    const localFavorite = JSON.parse(
-      localStorage.getItem('favoriteCities') || ''
-    )
+    const storage = localStorage.getItem('favoriteCities') || ''
 
-    if (localFavorite !== null) {
-      setFavoriteCities(localFavorite)
+    if (storage) {
+      const localFavorite = JSON.parse(storage)
+
+      if (localFavorite !== null) {
+        setFavoriteCities(localFavorite)
+      }
     }
   }, [])
 
