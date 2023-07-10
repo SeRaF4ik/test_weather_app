@@ -1,25 +1,32 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import { FormControl } from 'react-bootstrap'
 
 import { CityModel } from '~/types/app.models'
+import { PUBLIC_URL } from '~/utils/constants/app.constants'
 
 import CityList from '../city-list/city-list.component'
 
 import './search.style.scss'
 
 const Search = () => {
+  const [cities, setCities] = useState<CityModel[]>([])
   const [cityList, setCityList] = useState<CityModel[]>([])
+
+  useEffect(() => {
+    fetch(`${PUBLIC_URL}/cities.json`)
+      .then((cities) => cities.json())
+      .then((json) => setCities(json))
+  }, [])
 
   const handleCity = (event: ChangeEvent<HTMLInputElement>) => {
     const enteredCity = event.target.value
 
     if (enteredCity !== null && enteredCity.length >= 3) {
-      fetch(
-        `http://geodb-free-service.wirefreethought.com/v1/geo/places?limit=5&offset=0&types=CITY&namePrefix=${enteredCity}`
+      const filterCities = cities.filter((city) =>
+        city.name.toLowerCase().includes(enteredCity.toLowerCase())
       )
-        .then((resp) => resp.json())
-        .then((json) => setCityList(json.data))
+      setCityList(filterCities)
     } else {
       if (cityList.length) setCityList([])
     }

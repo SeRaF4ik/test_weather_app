@@ -22,8 +22,7 @@ function App() {
 
   const addFavoriteCity = (cityData: FavoriteCityModel) => {
     const checkCity = favoriteCities.filter(
-      (city) =>
-        city.name === cityData.name && city.latitude === cityData.latitude
+      (city) => city.name === cityData.name && city.lat === cityData.lat
     )
     if (checkCity.length) {
       setModal({
@@ -38,8 +37,7 @@ function App() {
 
   const deleteFavorite = (cityData: FavoriteCityModel) => {
     const newFavorites = favoriteCities.filter(
-      (city) =>
-        city.name !== cityData.name && city.latitude !== cityData.latitude
+      (city) => city.name !== cityData.name && city.lat !== cityData.lat
     )
     saveFavoriteCity(newFavorites)
   }

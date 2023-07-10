@@ -1,8 +1,8 @@
 export interface CityModel {
   name: string
-  countryCode: string
-  latitude: string
-  longitude: string
+  country: string
+  lat: string
+  lng: string
 }
 
 export interface FavoriteCityModel extends CityModel {}
